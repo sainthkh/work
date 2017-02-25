@@ -3448,6 +3448,7 @@ body>header.drop .menu-dismiss {
     line-height: 1;
     text-transform: uppercase
 }
+/*
 @supports (position: sticky) {
     .searchbar__drop--title {
         background-image: linear-gradient(to bottom, #fff, #fff 82%, rgba(255, 255, 255, 0) 100%);
@@ -3456,7 +3457,7 @@ body>header.drop .menu-dismiss {
         top: -1rem;
         z-index: 2
     }
-}
+}//*/
 .searchbar__drop--title::after {
     color: #c0bebc;
     content: attr(data-label);
@@ -3967,13 +3968,13 @@ header #header-post #bookclub-header__cta {
     padding-right: 3.333333333%;
     text-align: right
 }
->header::after {
+header::after {
     background: none;
     display: none;
     opacity: 0;
     visibility: hidden
 }
->header .header-secondary-fill {
+header .header-secondary-fill {
     display: block;
     position: absolute;
     left: 0;
@@ -3982,8 +3983,8 @@ header #header-post #bookclub-header__cta {
     height: 100%;
     z-index: -1
 }
->header .header-primary::after,
->header .header-secondary-fill::after {
+header .header-primary::after,
+header .header-secondary-fill::after {
     -webkit-transition: opacity 0.2s ease-in-out;
     -moz-transition: opacity 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out;
@@ -4000,28 +4001,28 @@ header #header-post #bookclub-header__cta {
     opacity: 0;
     z-index: -1
 }
->header .header-primary:hover::after,
->header .header-secondary-fill:hover::after {
+header .header-primary:hover::after,
+header .header-secondary-fill:hover::after {
     opacity: 1
 }
->header .header-primary h1,
->header .header-primary #income-report {
+header .header-primary h1,
+header .header-primary #income-report {
     -webkit-transition: opacity 0.2s ease-in-out;
     -moz-transition: opacity 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out
 }
->header.drop .header-primary {
+header.drop .header-primary {
     z-index: 1
 }
->header.drop .header-primary h1,
->header.drop .header-primary #income-report {
+header.drop .header-primary h1,
+header.drop .header-primary #income-report {
     opacity: 0.3
 }
->header.sticky .header-primary::after,
->header.sticky .header-secondary-fill::after {
+header.sticky .header-primary::after,
+header.sticky .header-secondary-fill::after {
     opacity: 1
 }
->header.sticky .drop-menu.active {
+header.sticky .drop-menu.active {
     margin-top: auto
 }
 .nav__new {
@@ -6282,12 +6283,13 @@ body.search .instantsearch__filters.hidden {
     transform: translate3d(33%, 0, 0);
     opacity: 0
 }
+/*
 @supports (position: sticky) {
     body.search .instantsearch__filters {
         position: sticky;
         top: 6rem
     }
-}
+}//*/
 body.search .instantsearch__filters--group+.instantsearch__filters--group {
     border-top: 1px solid #333;
     margin-top: 2rem;
@@ -8171,12 +8173,13 @@ html.remodal-is-locked {
         padding-bottom: 5%;
         padding-top: 5%
     }
+    /*
     @supports (-moz-appearance: meterbar) and (display: flex) {
         .home .header--return .block-section--item {
             padding-bottom: 4rem;
             padding-top: 4rem
         }
-    }
+    }//*/
 }
 @media screen and (max-width: 1080px) {
     .home main header {
@@ -8272,12 +8275,13 @@ html.remodal-is-locked {
     .home .home--header .block-section--item+.block-section--item {
         margin-left: 0
     }
+	/*
     @supports (-moz-appearance: meterbar) and (display: flex) {
         .home .home--header .block-section--item {
             padding-bottom: 5rem;
             padding-top: 5rem
         }
-    }
+    }//*/
     #home-journey {
         padding: 4em 0
     }
@@ -8395,12 +8399,13 @@ html.remodal-is-locked {
     .home .home--header .block-section--item {
         width: 100%
     }
+	/*
     @supports (-moz-appearance: meterbar) and (display: flex) {
         .home .home--header .block-section--item {
             padding-bottom: 3rem;
             padding-top: 3rem
         }
-    }
+    }//*/
     .home .home--header.header--newvisitor {
         background-position: 72% 50%;
         margin-bottom: 14rem
@@ -12321,6 +12326,7 @@ section.two-col-content--media:first-of-type {
     right: 16px;
     z-index: 3
 }
+/*
 @supports (-moz-appearance: meterbar) and (display: flex) {
     .post-type-archive-income-reports .graph-header .c3-event-rect:hover {
         fill: rgba(240, 240, 240, 0.03);
@@ -12338,7 +12344,7 @@ section.two-col-content--media:first-of-type {
     .post-type-archive-income-reports .graph-header .c3-event-rect:hover {
         fill: rgba(240, 240, 240, 0.05)
     }
-}
+}//*/
 .single-income-reports .content blockquote,
 .single-income-reports .content .section-intro blockquote {
     border-left: none;
