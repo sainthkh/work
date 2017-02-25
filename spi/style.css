@@ -4487,7 +4487,6 @@ header #header-post #bookclub-header__cta {
         width: 106px
     }
     body>header nav {
-        width: calc(100% - 106px);
         padding: 0 3.591954023% 0 0;
         text-align: right
     }
@@ -7613,19 +7612,15 @@ html.remodal-is-locked {
     background-repeat: no-repeat;
     background-size: cover;
     border-bottom: 8px solid #b51212;
-    height: 100vh;
     position: relative
 }
 .home main header .wrap {
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 6%;
-    position: absolute;
+	padding: 6%;
+	padding-top: 64px;
     width: 100%
 }
 .home main header h2 {
-    margin-bottom: .3333em;
+    margin: .3333em 0;
     font: 400 2.25em/1.1111em "Pacifico", sans-serif;
     color: #fbc731
 }
@@ -7635,9 +7630,6 @@ html.remodal-is-locked {
     font: 800 3.5em/1.1428571429em "proxima-nova", sans-serif;
     text-transform: uppercase;
     color: white
-}
-.home main header div {
-    position: relative
 }
 .home main header div p {
     width: 45%;
@@ -7656,7 +7648,6 @@ html.remodal-is-locked {
     opacity: 1;
     pointer-events: auto;
     visibility: visible;
-    height: 75vh
 }
 .home .home--header .wrap {
     font-size: 0.813rem
@@ -8353,9 +8344,6 @@ html.remodal-is-locked {
     }
     .home main header h1 {
         width: 100%
-    }
-    .home main header .wrap {
-        padding-top: calc(46vh - 64px)
     }
     .home main header .wrap p {
         color: #fff;
