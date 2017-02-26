@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/sainthkh/work#readme",
   "devDependencies": {
-    "browser-sync": "^2.18.8"
+    "browser-sync": "^2.18.8",
+    "chokidar": "^1.6.1",
+    "node-sass": "^4.5.0"
   }
 }
