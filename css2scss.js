@@ -22,7 +22,10 @@ const createStyleBlocks = (parent, media) => {
 				})
 				break;
 			case "atrule":
-				let atruleBlocks = createStyleBlocks(node, `@${node.name} ${node.params}`)
+				let atruleBlocks = createStyleBlocks(node, {
+					name: node.name, 
+					params: node.params,
+				})
 				blocks = blocks.concat(atruleBlocks)
 				break;
 		}

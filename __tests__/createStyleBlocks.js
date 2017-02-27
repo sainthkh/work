@@ -55,7 +55,7 @@ test("media query block", () => {
 `
 	const root = postcss.parse(style)
 	var blocks = createStyleBlocks(root)
-	expect(blocks[2].path).toEqual([".home", ".action", "@media (min-width: 600px)"])
+	expect(blocks[2].path).toEqual([".home", ".action", {name:"media", params:"(min-width: 600px)"}])
 	expect(blocks[2].nodes).toEqual(root.nodes[2].nodes[0].nodes)
 })
 
@@ -84,9 +84,9 @@ test("multiple media query blocks", () => {
 `
 	const root = postcss.parse(style)
 	var blocks = createStyleBlocks(root)
-	expect(blocks[2].path).toEqual([".home", ".action", "@media (min-width: 600px)"])
+	expect(blocks[2].path).toEqual([".home", ".action", {name:"media", params:"(min-width: 600px)"}])
 	expect(blocks[2].nodes).toEqual(root.nodes[2].nodes[0].nodes)
-	expect(blocks[3].path).toEqual([".home", ".action", "@media (min-width: 960px)"])
+	expect(blocks[3].path).toEqual([".home", ".action", {name:"media", params:"(min-width: 960px)"}])
 	expect(blocks[3].nodes).toEqual(root.nodes[3].nodes[0].nodes)
 })
 
@@ -113,8 +113,8 @@ test("multiple blocks in media query block", () => {
 `
 	const root = postcss.parse(style)
 	var blocks = createStyleBlocks(root)
-	expect(blocks[2].path).toEqual([".home", "@media (min-width: 600px)"])
+	expect(blocks[2].path).toEqual([".home", {name:"media", params:"(min-width: 600px)"}])
 	expect(blocks[2].nodes).toEqual(root.nodes[2].nodes[0].nodes)
-	expect(blocks[3].path).toEqual([".home", ".action", "@media (min-width: 600px)"])
+	expect(blocks[3].path).toEqual([".home", ".action", {name:"media", params:"(min-width: 600px)"}])
 	expect(blocks[3].nodes).toEqual(root.nodes[2].nodes[1].nodes)
 })

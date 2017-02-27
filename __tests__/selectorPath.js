@@ -28,8 +28,8 @@ test("consecutive classes", () => {
 })
 
 test("media query added at the back", () => {
-	var path = selectorPath("a:hover", "@media (min-width: 600px)")
+	var path = selectorPath("a:hover", {name: "media", params:"(min-width: 600px)"})
 	expect(path[0]).toBe("a")
 	expect(path[1]).toBe("&:hover")
-	expect(path[2]).toBe("@media (min-width: 600px)")
+	expect(path[2]).toEqual({name: "media", params:"(min-width: 600px)"})
 })
