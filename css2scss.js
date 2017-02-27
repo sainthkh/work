@@ -31,7 +31,21 @@ const createStyleBlocks = (parent, media) => {
 	return blocks
 }
 
+const makeNode = block => {
+	var path = block.path.reverse()
+	var nodes = block.nodes
+	var node
+	path.forEach(p => {
+		var rule = postcss.rule({ selector: p })
+		rule.append(nodes)
+		nodes = [rule]
+		node = rule
+	})
+	return node
+}
+
 module.exports = {
 	selectorPath,
 	createStyleBlocks,
+	makeNode,
 }
