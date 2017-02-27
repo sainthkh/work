@@ -37,6 +37,12 @@ const createStyleBlocks = (parent, media) => {
 const makeNode = block => {
 	var path = block.path.reverse()
 	var nodes = block.nodes
+	var atrule
+	if (typeof path[0] === "object") {
+		atrule = postcss.atRule(path[0])
+		path.shift()
+	}
+
 	var node
 	path.forEach(p => {
 		var rule = postcss.rule({ selector: p })
@@ -44,6 +50,11 @@ const makeNode = block => {
 		nodes = [rule]
 		node = rule
 	})
+
+	if(atrule) {
+		atrule.append(node)
+		node = atrule
+	}
 	return node
 }
 
