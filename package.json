@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": ".\\node_modules\\.bin\\jest"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,10 @@
   "devDependencies": {
     "browser-sync": "^2.18.8",
     "chokidar": "^1.6.1",
+    "jest": "^19.0.2",
     "node-sass": "^4.5.0"
+  },
+  "dependencies": {
+    "postcss": "^5.2.15",
   }
 }
