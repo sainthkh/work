@@ -17,6 +17,7 @@ chokidar.watch(['./spi/scss'], {
 function compile() {
 	exec('node sass.js', (err, stdout, stderr) => {
 		console.log(stdout)
+		console.log(stderr)
 	})
 }
 
