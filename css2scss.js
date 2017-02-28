@@ -34,6 +34,25 @@ const createStyleBlocks = (parent, media) => {
 	return blocks
 }
 
+const insertNode = (parent, block) => {
+	let inserted
+	let path = block.path[0]
+	let isAtRule = typeof path == "object"
+	for(let i = 0; i < parent.nodes.length; i++) {
+		let node = parent.nodes[i]
+		if(isAtRule && node.name == path.name && node.params == path.params ||
+			node.selector == path || node.selector == "root") {
+			block.path.shift()
+			insertNode(node, block)
+			inserted = true
+			break;
+		}
+	}
+	if(!inserted) {
+		parent.append(makeNode(block))
+	}
+}
+
 const makeNode = block => {
 	var path = block.path.reverse()
 	var nodes = block.nodes
@@ -62,4 +81,5 @@ module.exports = {
 	selectorPath,
 	createStyleBlocks,
 	makeNode,
+	insertNode,
 }
