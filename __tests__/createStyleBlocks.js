@@ -118,3 +118,49 @@ test("multiple blocks in media query block", () => {
 	expect(blocks[3].path).toEqual([".home", ".action", {name:"media", params:"(min-width: 600px)"}])
 	expect(blocks[3].nodes).toEqual(root.nodes[2].nodes[1].nodes)
 })
+
+test("other atrule block", () => {
+	const style = `
+@font-face {
+	font-family: "Bitstream Vera Serif Bold";
+    src: url("https://mdn.mozillademos.org/files/2468/VeraSeBd.ttf");
+}
+
+@import "abc.css";
+`
+	const root = postcss.parse(style)
+	var blocks = createStyleBlocks(root)
+	expect(blocks[0].path).toEqual(["root", {name:"font-face", params: ""}])
+	expect(blocks[0].nodes).toEqual(root.nodes[0].nodes)
+	expect(blocks[1].path).toEqual(["root", {name:"import", params: `"abc.css"`}])
+	expect(blocks[1].nodes).toEqual(root.nodes[1].nodes)
+})
+
+test("supports atrule", () => {
+	const style = `
+@supports (animation-name: test) {
+	@keyframes {
+		from { margin-top: 50px; }
+		to { margin-top: 100px; }
+	}
+}
+
+@supports (position: sticky) {
+	.a {
+		width: 100%;
+	}
+
+	.b {
+		height: 50px;
+	}
+}
+`
+	const root = postcss.parse(style)
+	var blocks = createStyleBlocks(root)
+	expect(blocks[0].path).toEqual(["root", {name:"supports", params:"(animation-name: test)"}])
+	expect(blocks[0].nodes).toEqual(root.nodes[0].nodes)
+	expect(blocks[1].path).toEqual([".a", {name: "supports", params:"(position: sticky)"}, ])
+	expect(blocks[1].nodes).toEqual(root.nodes[1].nodes[0].nodes)
+	expect(blocks[2].path).toEqual([".b", {name: "supports", params:"(position: sticky)"}, ])
+	expect(blocks[2].nodes).toEqual(root.nodes[1].nodes[1].nodes)
+})

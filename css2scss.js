@@ -22,11 +22,33 @@ const createStyleBlocks = (parent, media) => {
 				})
 				break;
 			case "atrule":
-				let atruleBlocks = createStyleBlocks(node, {
-					name: node.name, 
-					params: node.params,
-				})
-				blocks = blocks.concat(atruleBlocks)
+				if(node.name == "media") {
+					let atruleBlocks = createStyleBlocks(node, {
+						name: node.name, 
+						params: node.params,
+					})
+					blocks = blocks.concat(atruleBlocks)
+				} else if (node.name == "supports") {
+					for(let i = 0; i < node.nodes.length; i++) {
+						let nodeInSupports = node.nodes[i]
+						if(nodeInSupports.type == "atrule") {
+							blocks.push({
+								path: ["root", {name: node.name, params: node.params, }],
+								nodes: node.nodes,		
+							})
+						} else {
+							blocks.push({
+								path: selectorPath(nodeInSupports.selector, {name: node.name, params: node.params}),
+								nodes: nodeInSupports.nodes
+							})
+						}
+					}
+				} else {
+					blocks.push({
+						path: ["root", {name: node.name, params: node.params, }],
+						nodes: node.nodes,
+					})
+				}
 				break;
 		}
 	})
