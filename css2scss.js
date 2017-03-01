@@ -11,6 +11,7 @@ const cssText2scss = css => {
 	let root = postcss.parse(css)
 	let blocks = createStyleBlocks(root)
 	let result = constructScssTree(blocks)
+	orderNodes(result.nodes)
 	return result.toString()
 }
 
@@ -119,6 +120,9 @@ const createStyleBlocks = (parent, media) => {
 const insertNode = (parent, block) => {
 	let inserted
 	let path = block.path[0]
+	if(path == "") {
+		return
+	}
 	let isAtRule = typeof path == "object"
 	for(let i = 0; i < parent.nodes.length; i++) {
 		let node = parent.nodes[i]
@@ -170,6 +174,71 @@ const postcssNode = path => {
 	return node
 }
 
+const orderNodes = nodes => {
+	if(!nodes) {
+		return
+	}
+
+	var typeOrder = {
+		"decl": 1,
+		"atrule": 2,
+		"rule": 3,
+	}
+
+	var temp
+	for(let i = 0; i < nodes.length - 1; i++) {
+		for(let j = 0; j < nodes.length -1 - i; j++) {
+			if(typeOrder[nodes[j].type] > typeOrder[nodes[j+1].type]) {
+				temp = nodes[j]
+				nodes[j] = nodes[j+1]
+				nodes[j+1] = temp
+			} else if(typeOrder[nodes[j].type] == typeOrder[nodes[j+1].type]){
+				switch(nodes[j].type) {
+					case "decl":
+						break // do nothing
+					case "atrule":
+						if(nodes[j].name == "media" && nodes[j+1].name != "media") {
+							temp = nodes[j]
+							nodes[j] = nodes[j+1]
+							nodes[j+1] = temp
+						} else if (nodes[j].name == nodes[j+1].name && nodes[j].name == "media") {
+							let currentWidth = parseInt(nodes[j].params.match(/\d+/))
+							let nextWidth = parseInt(nodes[j+1].params.match(/\d+/))
+
+							if(currentWidth > nextWidth) {
+								temp = nodes[j]
+								nodes[j] = nodes[j+1]
+								nodes[j+1] = temp
+							}
+						}
+						break
+					case "rule":
+						let ruleOrder = {
+							"&": 1,
+							/* tag : 2 */
+							"#": 3,
+							".": 4,
+						}
+						let currentOrder = ruleOrder[nodes[j].selector[0]] || 2
+						let nextOrder = ruleOrder[nodes[j+1].selector[0]] || 2
+						if(currentOrder > nextOrder) {
+							temp = nodes[j]
+							nodes[j] = nodes[j+1]
+							nodes[j+1] = temp
+						}
+						break
+				}
+			}
+		}
+	}
+
+	for(let i = 0; i < nodes.length; i++) {
+		if(nodes[i].type == 'rule') {
+			orderNodes(nodes[i].nodes)
+		}
+	}
+}
+
 module.exports = {
 	css2scss,
 	cssText2scss,
@@ -177,4 +246,5 @@ module.exports = {
 	createStyleBlocks,
 	makeNode,
 	insertNode,	
+	orderNodes,
 }
