@@ -33,3 +33,23 @@ test("media query added at the back", () => {
 	expect(path[1]).toBe("&:hover")
 	expect(path[2]).toEqual({name: "media", params:"(min-width: 600px)"})
 })
+
+test("double colon", () => {
+	var path = selectorPath("a b::before")
+	expect(path[0]).toBe("a")
+	expect(path[1]).toBe("b")
+	expect(path[2]).toBe("&::before")
+})
+
+test("pseudo-class with parenthesis 1", () => {
+	var path = selectorPath("a:not(.hi):not(.you)")
+	expect(path[0]).toBe("a")
+	expect(path[1]).toBe("&:not(.hi)")
+	expect(path[2]).toBe("&:not(.you)")
+})
+
+test("pseudo-class with parenthesis 2", () => {
+	var path = selectorPath("a:not(.hi .you)")
+	expect(path[0]).toBe("a")
+	expect(path[1]).toBe("&:not(.hi .you)")
+})

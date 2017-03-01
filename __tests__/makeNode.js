@@ -26,10 +26,9 @@ test("make media query node", () => {
 	var block = {path: [".page", ".show", {name:"media", params:"(min-width: 600px)"}], nodes: [decl]}
 	var node = makeNode(block)
 	
-	expect(node.type).toBe("atrule")
-	expect(node.name).toBe("media")
-	expect(node.params).toBe("(min-width: 600px)")
-	expect(node.nodes[0].selector).toBe(".page")
-	expect(node.nodes[0].nodes[0].selector).toBe(".show")
-	expect(node.nodes[0].nodes[0].nodes).toEqual(block.nodes)
+	expect(node.selector).toBe('.page')
+	expect(node.nodes[0].selector).toBe('.show')
+	expect(node.nodes[0].nodes[0].type).toBe("atrule")
+	expect(node.nodes[0].nodes[0].name).toBe("media")
+	expect(node.nodes[0].nodes[0].params).toBe("(min-width: 600px)")
 })

@@ -1,10 +1,68 @@
 const postcss = require('postcss')
+const fs = require('fs')
+
+const css2scss = (input, output) => {
+	let css = fs.readFileSync(input).toString()
+	let scss = cssText2scss(css)
+	fs.writeFileSync(output, scss)
+}
+
+const cssText2scss = css => {
+	let root = postcss.parse(css)
+	let blocks = createStyleBlocks(root)
+	let result = constructScssTree(blocks)
+	return result.toString()
+}
+
+const constructScssTree = blocks => {
+	let result = postcss.root()
+	for(let i = 0; i < blocks.length; i++) {
+		insertNode(result, blocks[i])
+	}
+	return result
+}
 
 const selectorPath = (selector, media) => {
-	selector = selector.replace(/\s*(:|~|\+|>)\s*/g, '$1')
-	selector = selector.replace(/(:|~|\+|>)/g, ' &$1')
-	selector = selector.replace(/([^\s:~+>])\./g, '$1 &.')
-	var path = selector.split(' ')
+	selector = selector.replace(/\s*(::|:|~|\+|>)\s*/g, '$1')
+	var path = []
+	var token = []
+	var chars = selector.split('')
+	var lastChar = ''
+	var skip = false
+	chars.forEach(c => {
+		if(!skip) {
+			if(c == ' ') {
+				path.push(token.join(''))
+				token = []
+			} else if (c == ':' || c == '~' || c == '+' || c == '>') {
+				if(token[0] == '&' && token[1] == ':' && token.length == 2) { // double colon
+					token.push(':')
+				} else {
+					path.push(token.join(''))
+					token = ['&', c]
+				}
+			} else if (c == '.') {
+				if (lastChar.match(/[a-zA-Z0-9-_]/)) {
+					path.push(token.join(''))
+					token = ['&', c]
+				} else {
+					token.push(c)
+				}
+			} else if (c == '(') {
+				skip = true
+				token.push(c)
+			} else {
+				token.push(c)
+			}
+		} else if (c == ')') {
+			skip = false
+			token.push(c)
+		} else {
+			token.push(c)
+		}
+		lastChar = c
+	})
+	path.push(token.join(''))
 	if(media) {
 		path.push(media)
 	}
@@ -16,9 +74,11 @@ const createStyleBlocks = (parent, media) => {
 	parent.nodes.forEach(node => {
 		switch(node.type) {
 			case "rule":
-				blocks.push({
-					path: selectorPath(node.selector, media),
-					nodes: node.nodes,
+				node.selector.replace(/\s*,\s*/g, ',').split(',').forEach(selector => {
+					blocks.push({
+						path: selectorPath(selector, media),
+						nodes: node.nodes,
+					})
 				})
 				break;
 			case "atrule":
@@ -63,45 +123,58 @@ const insertNode = (parent, block) => {
 	for(let i = 0; i < parent.nodes.length; i++) {
 		let node = parent.nodes[i]
 		if(isAtRule && node.name == path.name && node.params == path.params ||
-			node.selector == path || node.selector == "root") {
+			node.selector == path) {
 			block.path.shift()
-			insertNode(node, block)
+			if(block.path.length == 0) {
+				node.append(block.nodes)
+			} else {
+				insertNode(node, block)
+			}
 			inserted = true
-			break;
+			break
 		}
 	}
 	if(!inserted) {
+		if(path == "root") {
+			block.path.shift()
+		}
 		parent.append(makeNode(block))
 	}
 }
 
 const makeNode = block => {
-	var path = block.path.reverse()
-	var nodes = block.nodes
-	var atrule
-	if (typeof path[0] === "object") {
-		atrule = postcss.atRule(path[0])
-		path.shift()
+	var path = block.path
+	
+	var node = postcssNode(path[0])
+	path.shift()
+	var lastNode = node
+	path.forEach(p => {
+		let child = postcssNode(p)
+		lastNode.append(child)
+		lastNode = child
+	})
+	if(block.nodes) {
+		lastNode.append(block.nodes)
 	}
 
-	var node
-	path.forEach(p => {
-		var rule = postcss.rule({ selector: p })
-		rule.append(nodes)
-		nodes = [rule]
-		node = rule
-	})
+	return node
+}
 
-	if(atrule) {
-		atrule.append(node)
-		node = atrule
+const postcssNode = path => {
+	let node
+	if(typeof path === "object") {
+		node = postcss.atRule({ name: path.name, params: path.params })
+	} else {
+		node = postcss.rule({ selector: path })
 	}
 	return node
 }
 
 module.exports = {
+	css2scss,
+	cssText2scss,
 	selectorPath,
 	createStyleBlocks,
 	makeNode,
-	insertNode,
+	insertNode,	
 }

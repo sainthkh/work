@@ -164,3 +164,37 @@ test("supports atrule", () => {
 	expect(blocks[2].path).toEqual([".b", {name: "supports", params:"(position: sticky)"}, ])
 	expect(blocks[2].nodes).toEqual(root.nodes[1].nodes[1].nodes)
 })
+
+test("real example", () => {
+	const style = `
+@media screen and (min-width: 1600px) {
+  article footer {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1440px;
+  }
+
+  article footer .disqus {
+    padding-left: 0;
+  }
+}
+`
+	const root = postcss.parse(style)
+	var blocks = createStyleBlocks(root)
+	expect(blocks[0].path).toEqual(["article", "footer", {name:"media", params: "screen and (min-width: 1600px)"}])
+	expect(blocks[1].path).toEqual(["article", "footer", ".disqus", {name:"media", params: "screen and (min-width: 1600px)"}])
+})
+
+test("comma", () => {
+	const style =`
+a, b, c d:hover {
+	margin: 0 10px;
+}
+`
+
+	const root = postcss.parse(style)
+	var blocks = createStyleBlocks(root)
+	expect(blocks[0].path).toEqual(["a"])
+	expect(blocks[1].path).toEqual(["b"])
+	expect(blocks[2].path).toEqual(["c", "d", "&:hover"])
+})
