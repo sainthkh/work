@@ -272,11 +272,8 @@ body>header {
     }
     .header-primary {
         display: flex;
-        transform: translateY(-50%);
         height: 100%;
         padding-left: 2.5%;
-        position: relative;
-        top: 50%;
         @media screen and (min-width: 1140px) {
             padding-left: 3.33333333%;    
         }
