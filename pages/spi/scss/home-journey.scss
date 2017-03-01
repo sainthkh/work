@@ -1,0 +1,45 @@
+#home-journey {
+    padding: 6em 0;
+    background: #282826 url("../img/home-journey-bg.jpg") center center no-repeat;
+    background-size: cover;
+    @media screen and (max-width: 768px) {
+        padding: 4em 0
+    }
+    &>h2 {
+        font: 400 2em "Pacifico",sans-serif;
+        text-align: center;
+        color: #fbc731;
+        @media screen and (max-width: 640px) {
+            font-size: 1.25em
+        }
+        @media screen and (max-width: 768px) {
+            font-size: 1.75em
+        }
+    }
+    &>h1 {
+        margin-bottom: 1em;
+        font: 800 2em "proxima-nova",sans-serif;
+        text-align: center;
+        text-transform: uppercase;
+        color: white;
+        @media screen and (min-width: 640px) {
+            font-size: 2.5em
+        }
+        @media screen and (min-width: 768px) {
+            font-size: 3em
+        }
+    }
+    #clear-journey-filter {
+        margin: 2em auto 1em;
+        @media screen and (max-width: 768px) {
+            display: none
+        }
+    }
+    .journey {
+        background: url("../img/diagonal-lines-2.png"),url("../img/home-journey-slider-bg.jpg");
+        background-size: auto, cover;
+        @media screen and (max-width: 768px) {
+            background: url("../img/diagonal-lines-2.png")
+        }
+    }
+}
