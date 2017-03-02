@@ -12,7 +12,7 @@
     max-width: 78.375em;
     padding: 2rem 1em;
     position: relative;
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 600px) {
         flex-direction: row;
     }
     .wrap {
@@ -21,12 +21,11 @@
 }
 .featured-book__text {
     color: #fff;
-    padding-right: 10%;
-    width: 50%;
-    @media screen and (max-width: 768px) {
-        padding: 0;
-        width: 100%;
-        text-align: center
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    @media screen and (min-width: 600px) {
+        width: 49%;
     }
     .featured-label {
         color: #fbc731;
@@ -51,10 +50,15 @@
 	width: 100%;
 	text-align: center;
 	&.sm {
-
+        @media screen and (min-width: 600px) {
+            display: none;
+        }
 	}
 	&.lg {
 		display: none;
+        @media screen and (min-width: 600px) {
+            display: block;
+        }
 	}
 	hr {
         &.diagonal {
@@ -155,34 +159,17 @@
     }
 }
 .featured-book__image {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    -moz-align-items: center;
     align-items: center;
-    width: 50%;
-    @media screen and (max-width: 600px) {
-        -webkit-box-direction: normal;
-        -webkit-box-orient: vertical;
-        -webkit-flex-direction: column;
-        -moz-flex-direction: column;
-        -ms-flex-direction: column;
-        flex-direction: column
-    }
-    @media screen and (max-width: 768px) {
-        padding: 0;
-        width: 100%;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        -webkit-justify-content: center;
-        -moz-justify-content: center;
-        justify-content: center;
-        margin-top: 2.5rem
+    justify-content: center;
+    flex-direction: column;
+    padding: 0;
+    margin-top: 2.5rem;
+    @media screen and (min-width: 600px) {
+        width: 49%;
+        margin-top: 0;
+        padding: 3%;
+        border-left: 1px solid #333;
     }
 }
 .featured-book__cover {
@@ -214,13 +201,11 @@
 }
 .featured-book__testimonial {
     color: #adaba8;
-    padding-left: 10%;
-    width: 50%;
-    @media screen and (max-width: 600px) {
+    padding-left: 0;
+    text-align: center;
+    @media screen and (min-width: 600px) {
+        text-align: left;
         margin-top: 5%;
-        padding-left: 0;
-        text-align: center;
-        width: auto
     }
     .testimonial-text {
         color: inherit;
