@@ -43,20 +43,6 @@
             margin-top: 0
         }
         header {
-            transition: background,0.2s ease-in-out;
-            background-position: center top;
-            background-repeat: no-repeat;
-            background-size: cover;
-            border-bottom: 8px solid #b51212;
-            position: relative;
-            @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
-                height: auto;
-                min-height: 100vh
-            }
-            @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape) {
-                height: auto;
-                min-height: 100vh
-            }
             @media screen and (max-width: 480px) {
                 background-position: 65% 50%
             }
@@ -103,38 +89,6 @@
                     top: 50%
                 }
             }
-            .wrap {
-                bottom: 0;
-                left: 0;
-                right: 0;
-                padding: 6%;
-                padding-top: $header-height-phone + 10px;
-                width: 100%;
-                p {
-                    @media screen and (max-width: 320px) {
-                        display: none;
-                        height: 0;
-                        opacity: 0
-                    }
-                    @media screen and (max-width: 640px) {
-                        color: #fff;
-                        margin-bottom: 1em;
-                        width: 100%
-                    }
-                }
-                a {
-                    @media screen and (max-width: 640px) {
-                        margin-top: auto;
-                        position: relative;
-                        top: auto
-                    }
-                }
-                h1 {
-                    @media screen and (max-device-width: 320px) and (max-device-height: 480px) {
-                        font-size: 3em
-                    }
-                }
-            }
         }
     }
     .home--header {
@@ -143,98 +97,51 @@
         opacity: 1;
         pointer-events: auto;
         visibility: visible;
-        &.header--newvisitor {
+        .wrap {
+            padding: 6%;
+            padding-top: $header-height-phone + 10px;
+            transition: background,0.2s ease-in-out;
+            background-image: url('https://cdn.smartpassiveincome.com/wp-content/uploads/2013/11/spi-home-new01-1.jpg'); 
+            background-color: #2a3540;
             background-position: 72% 50%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-size: 1em;
             @media screen and (min-width: 640px) {
                 background-position: 100% 50%;
+                font-size: 0.813rem;    
             }
-            .wrap {
-                bottom: 3vh;
-                .btn {
+            .btn {
+                margin-top: auto;
+                font-size: 0.938rem;
+                position: relative;
+                right: auto;
+                top: auto
+            }
+            .wpcf7-form {
+                input[type=submit] {
                     font-size: 0.938rem;
                     position: relative;
                     right: auto;
                     top: auto
                 }
-                .wpcf7-form {
-                    input[type=submit] {
-                        font-size: 0.938rem;
-                        position: relative;
-                        right: auto;
-                        top: auto
-                    }
-                    .wpcf7-submit {
-                        font-size: 0.938rem;
-                        position: relative;
-                        right: auto;
-                        top: auto
-                    }
+                .wpcf7-submit {
+                    font-size: 0.938rem;
+                    position: relative;
+                    right: auto;
+                    top: auto
                 }
-            }
-        }
-        &.header--return {
-            background-position: top right;
-            @media screen and (max-width: 640px) {
-                background-position: 68% 50%
-            }
-            @media screen and (max-width: 768px) {
-                background-position: 63.5% 50%;
-                height: auto;
-                padding-top: 25%
-            }
-            .wrap {
-                padding-bottom: 2%;
-                @media screen and (max-width: 640px) {
-                    padding-top: 30%
-                }
-                @media screen and (max-width: 768px) {
-                    position: static
-                }
-                h1 {
-                    @media screen and (max-width: 640px) {
-                        padding-right: 10%
-                    }
-                }
-                h2 {
-                    @media screen and (max-width: 640px) {
-                        padding-right: 10%
-                    }
-                }
-            }
-        }
-        .wrap {
-            font-size: 0.813rem;
-            @media screen and (max-width: 640px) {
-                font-size: 1em
             }
         }
         .block-section {
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -moz-flex;
-            display: -ms-flexbox;
             display: flex;
-            -webkit-box-align: center;
-            -ms-flex-align: center;
-            -webkit-align-items: center;
-            -moz-align-items: center;
             align-items: center;
-            -webkit-box-align: stretch;
-            -ms-flex-align: stretch;
-            -webkit-align-items: stretch;
-            -moz-align-items: stretch;
             align-items: stretch;
             letter-spacing: 0;
             max-width: inherit;
             padding-bottom: 10px;
             @media screen and (max-width: 768px) {
-                -webkit-flex-wrap: wrap;
-                -moz-flex-wrap: wrap;
-                -ms-flex-wrap: wrap;
                 flex-wrap: wrap;
-                -ms-flex-pack: distribute;
-                -webkit-justify-content: space-around;
-                -moz-justify-content: space-around;
                 justify-content: space-around;
                 bottom: auto;
                 position: relative;
