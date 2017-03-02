@@ -27,9 +27,10 @@
         }
     }
     #clear-journey-filter {
-        margin: 2em auto 1em;
-        @media screen and (max-width: 768px) {
-            display: none
+        display: none;
+        @media screen and (min-width: 768px) {
+            display: block;
+            margin: 2em auto 1em;
         }
     }
     .journey {
@@ -38,6 +39,29 @@
         @media screen and (max-width: 768px) {
             background: url("../img/diagonal-lines-2.png")
         }
+    }
+}
+
+#clear-journey-filter {
+    height: 0;
+    margin: 0 auto;
+    transition: opacity 0.2s ease-in-out;
+    position: relative;
+    @media screen and (min-width: 768px) {
+        display: block;
+        width: 130px;
+        margin: -1em auto 4em;
+        background: transparent;
+        font: 800 0.875em "proxima-nova",sans-serif;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.24);
+    }
+    &.hide {
+        z-index: -1;
+        height: 0;
+        margin: 0 auto;
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out
     }
 }
 
@@ -51,6 +75,7 @@
     background-image: url("../img/diagonal-lines-2.png"),-webkit-linear-gradient(45deg, #33322f 0%, #403f3d 100%);
     background-image: url("../img/diagonal-lines-2.png"),-ms-linear-gradient(45deg, #33322f 0%, #403f3d 100%);
     @media screen and (min-width: 768px) {
+        display: flex;
         height: 8px;
         max-height: 8px;
         padding: 0 3.571428571%;
@@ -60,11 +85,12 @@
         height: auto;
         max-height: 1000px;
         margin: 0;
+        padding: 1em;
         transition: max-height 0.4s ease-in-out;
         div {
             display: inline-block;
             height: auto;
-            padding: 3.205128205% 1.602564103%;
+            padding: 1em 0.5em;
             opacity: 1;
             cursor: pointer;
             transition: height 0.4s ease-in-out,opacity 0.4s ease-in-out 1s;
@@ -74,7 +100,9 @@
             &.fade {
                 h2 {
                     opacity: 1;
-                    transition: opacity 0.4s ease-in-out 0.3s
+                    transition: opacity 0.4s ease-in-out 0.3s;
+                    height: 50%;
+                    margin-bottom: 32px;
                 }
                 h3 {
                     opacity: 1;
@@ -83,6 +111,7 @@
             }
         }
         .slide {
+            top: calc(50% + 16px);
             background-color: #6f7373;
             transition: background 0.2s ease-in-out 0.2s;
             .grab {
@@ -134,34 +163,33 @@
         }
     }
     div {
-        display: none;
-        vertical-align: middle;
-        width: 20%;
-        height: 0;
-        text-align: center;
-        letter-spacing: normal;
-        opacity: 0;
-        @media screen and (max-width: 768px) {
-            position: relative;
-            z-index: 1;
-            display: block;
-            width: auto;
-            height: auto;
-            margin-bottom: 2em;
-            opacity: 1;
-            text-align: left;
-            cursor: pointer
+        position: relative;
+        z-index: 1;
+        display: block;
+        width: auto;
+        height: auto;
+        margin-bottom: 2em;
+        opacity: 1;
+        text-align: left;
+        cursor: pointer;
+        @media screen and (min-width: 768px) {
+            display: none;
+            margin-bottom: 0;
+            vertical-align: middle;
+            width: 20%;
+            height: 0;
+            text-align: center;
+            letter-spacing: normal;
+            opacity: 0;
         }
         &:last-of-type {
-            @media screen and (max-width: 768px) {
+            @media screen and (min-width: 768px) {
                 margin-bottom: 0
             }
         }
         &.active {
             button {
-                @media screen and (max-width: 768px) {
-                    background: white
-                }
+                background: white
             }
         }
         h2 {
@@ -194,62 +222,57 @@
             }
         }
         button {
-            display: none;
-            @media screen and (max-width: 768px) {
-                position: absolute;
-                left: -11.1%;
-                top: 0;
-                display: block;
-                width: 24px;
-                height: 24px;
-                border: 2px solid #adaba8;
-                border-radius: 12px;
-                background: #666660;
-                transition: background-color 0.2s ease-in-out
+            position: absolute;
+            left: -12.5%;
+            top: 0;
+            display: block;
+            width: 24px;
+            height: 24px;
+            border: 2px solid #adaba8;
+            border-radius: 12px;
+            background: #666660;
+            transition: background-color 0.2s ease-in-out;
+            @media screen and (min-width: 768px) {
+                display: none;
             }
         }
     }
     .slide {
         position: absolute;
-        top: 50%;
-        -ms-transform: translateY(-50%);
-        -webkit-transform: translateY(-50%);
-        transform: translateY(-50%);
-        display: block;
-        width: 92.85714286%;
-        height: 4px;
-        border-radius: 4px;
-        background: transparent;
-        @media screen and (max-width: 768px) {
-            left: 4%;
-            top: 0;
-            width: 8px;
-            height: 100%;
-            transform: none;
-            border-radius: 0;
-            background-color: #6f7373
+        left: 4%;
+        top: 0;
+        width: 8px;
+        height: 100%;
+        transform: none;
+        border-radius: 0;
+        background-color: #6f7373;
+        @media screen and (min-width: 768px) {
+            top: 50%;
+            transform: translateY(-50%);
+            display: block;
+            width: 92.85714286%;
+            height: 4px;
+            border-radius: 4px;
         }
         .grab {
-            position: absolute;
-            left: 50%;
-            top: -13px !important;
-            -ms-transform: translateX(-50%);
-            -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
-            display: block;
-            max-width: 1000px;
-            height: 32px;
-            padding: 0 2%;
-            border-radius: 16px;
-            background: white;
-            box-shadow: 0px 4px 16px 0px rgba(0,0,0,0.04),0px 12px 32px 0px rgba(0,0,0,0.16);
-            font: 800 .875em/2.2857142857em "proxima-nova",sans-serif;
-            text-transform: uppercase;
-            letter-spacing: normal;
-            color: #282826;
-            cursor: pointer;
-            @media screen and (max-width: 768px) {
-                display: none
+            display: none;
+            @media screen and (min-width: 768px) {
+                display: block;
+                position: absolute;
+                left: 50%;
+                top: -13px !important;
+                transform: translateX(-50%);
+                max-width: 1000px;
+                height: 32px;
+                padding: 0 2%;
+                border-radius: 16px;
+                background: white;
+                box-shadow: 0px 4px 16px 0px rgba(0,0,0,0.04),0px 12px 32px 0px rgba(0,0,0,0.16);
+                font: 800 .875em/2.2857142857em "proxima-nova",sans-serif;
+                text-transform: uppercase;
+                letter-spacing: normal;
+                color: #282826;
+                cursor: pointer;
             }
             &::before {
                 content: "";
