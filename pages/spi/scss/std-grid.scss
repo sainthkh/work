@@ -2,21 +2,24 @@
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
+    @media screen and (min-width: 600px) {
+        display: flex;
+        justify-content: center;
+    }
     article {
         display: block;
         width: 100%;
         margin: 0;
         padding: 1em 12%;
-        border-bottom: 2px solid #f7f8f9;
-        @media screen and (min-width: 768px) {
-            display: table-cell;
-            vertical-align: top;
-            padding: 2.9375em 3.263888889%;
-            border-top: 2px solid #f7f8f9;
-            border-right: 1px solid #f7f8f9;
-            border-bottom: 2px solid #f7f8f9;
-            border-left: 1px solid #f7f8f9;
-            width: 29.88505747%
+        $border-color: #eee;
+        border-bottom: 2px solid $border-color;
+        @media screen and (min-width: 600px) {
+            width: 33%;
+            padding: 1em;
+            border-right: 1px solid $border-color;
+            &:last-child {
+                border-right: none;
+            }
         }
         figure {
             position: relative;
@@ -63,7 +66,7 @@
             }
         }
         h2 {
-            padding: 0 0 1.7142857143em;
+            padding: 0;
             font: 400 0.7em "PT Serif",serif;
             color: #adaba8;
             &.diagonal-pattern__bottom {
