@@ -106,44 +106,12 @@
         }
     }
     .std-grid {
-        display: table;
-        width: 100%;
-        @media screen and (max-width: 768px) {
-            border-bottom: 2px solid #f7f8f9
-        }
         article {
-			display: block;
-			width: 100%;
-			margin: 0;
-			padding: 1em 12%;
-			border-bottom: 2px solid #f7f8f9;
-            @media screen and (min-width: 768px) {
-				display: table-cell;
-				vertical-align: top;
-				padding: 2.9375em 3.263888889%;
-				border-top: 2px solid #f7f8f9;
-				border-right: 1px solid #f7f8f9;
-				border-bottom: 2px solid #f7f8f9;
-				border-left: 1px solid #f7f8f9;
-				width: 29.88505747%
-            }
-
-			figure {
-				margin-bottom: 0.5em;
-			}
             h1 {
                 color: #282826;
-				margin-bottom: 0.4em;
-                @media screen and (max-width: 768px) {
-                    font-size: 1em
-                }
                 a {
                     color: #282826
                 }
-            }
-            h2 {
-                padding: 0;
-				font-size: 0.7em;
             }
             .comments-bubble {
                 right: 9.791666667%;
