@@ -37,34 +37,29 @@
             }
         }
     }
-    main {
-        background-color: white;
-        @media screen and (max-width: 768px) {
-            margin-top: 0
-        }
-        header {
-            @media screen and (max-width: 480px) {
-                background-position: 65% 50%
-            }
-            @media screen and (max-width: 640px) {
-                font-size: 0.7em
-            }
-            @media screen and (max-width: 768px) {
-                background-position: 55% 50%
-            }
-            @media screen and (max-width: 952px) {
-                font-size: .8em
-            }
-            @media screen and (max-width: 1080px) {
-                font-size: .9em
-            }
-            @media screen and (min-width: 1080px) {
-                height: 100vh;
-            }
-            h2 {
-                margin-bottom: .3333em;
-                font: 400 2.25em/1.1111em "Pacifico",sans-serif;
-                color: #fbc731
+    .home--header {
+        border-bottom: 8px solid #b51212;
+        display: block;
+        opacity: 1;
+        pointer-events: auto;
+        visibility: visible;
+        .wrap {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 6%;
+            padding-top: $header-height-phone + 10px;
+            transition: background,0.2s ease-in-out;
+            background-image: url('https://cdn.smartpassiveincome.com/wp-content/uploads/2013/11/spi-home-new01-1.jpg'); 
+            background-color: #2a3540;
+            background-position: 72% 50%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-size: 1em;
+            min-height: 60vh;
+            @media screen and (min-width: 768px) {
+                background-position: 80% 50%;
+                height: 75vh;
             }
             h1 {
                 margin-bottom: .75em;
@@ -72,9 +67,15 @@
                 font: 800 2.5em "proxima-nova",sans-serif;
                 text-transform: uppercase;
                 color: white;
-                @media screen and (min-width: 640px) {
-                    width: 56%;
+                @media screen and (min-width: 768px) {
+                    font-size: 3.5em;
+                    width: 70%;
                 }
+            }
+            h2 {
+                margin-bottom: .3333em;
+                font: 400 2.25em/1.1111em "Pacifico",sans-serif;
+                color: #fbc731
             }
             div {
                 p {
@@ -88,28 +89,6 @@
                     right: 0;
                     top: 50%
                 }
-            }
-        }
-    }
-    .home--header {
-        border-bottom: 8px solid #b51212;
-        display: block;
-        opacity: 1;
-        pointer-events: auto;
-        visibility: visible;
-        .wrap {
-            padding: 6%;
-            padding-top: $header-height-phone + 10px;
-            transition: background,0.2s ease-in-out;
-            background-image: url('https://cdn.smartpassiveincome.com/wp-content/uploads/2013/11/spi-home-new01-1.jpg'); 
-            background-color: #2a3540;
-            background-position: 72% 50%;
-            background-size: cover;
-            background-repeat: no-repeat;
-            font-size: 1em;
-            @media screen and (min-width: 640px) {
-                background-position: 100% 50%;
-                font-size: 0.813rem;    
             }
             .btn {
                 margin-top: auto;
