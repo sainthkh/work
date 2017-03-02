@@ -48,7 +48,6 @@
             background-repeat: no-repeat;
             background-size: cover;
             border-bottom: 8px solid #b51212;
-            height: 100vh;
             position: relative;
             @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
                 height: auto;
@@ -73,6 +72,9 @@
             @media screen and (max-width: 1080px) {
                 font-size: .9em
             }
+            @media screen and (min-width: 1080px) {
+                height: 100vh;
+            }
             h2 {
                 margin-bottom: .3333em;
                 font: 400 2.25em/1.1111em "Pacifico",sans-serif;
@@ -80,12 +82,12 @@
             }
             h1 {
                 margin-bottom: .8928571429em;
-                width: 56%;
-                font: 800 3.5em/1.1428571429em "proxima-nova",sans-serif;
+                width: 100%;
+                font: 800 2.5em "proxima-nova",sans-serif;
                 text-transform: uppercase;
                 color: white;
-                @media screen and (max-width: 640px) {
-                    width: 100%
+                @media screen and (min-width: 640px) {
+                    width: 56%;
                 }
             }
             div {
@@ -106,7 +108,7 @@
                 left: 0;
                 right: 0;
                 padding: 6%;
-                padding-top: 64px;
+                padding-top: $header-height-phone + 10px;
                 width: 100%;
                 p {
                     @media screen and (max-width: 320px) {
@@ -141,19 +143,13 @@
         opacity: 1;
         pointer-events: auto;
         visibility: visible;
-        height: 75vh;
         &.header--newvisitor {
-            background-position: 100% 50%;
-            margin-bottom: 12rem;
-            @media screen and (max-width: 640px) {
-                background-position: 72% 50%;
-                margin-bottom: 14rem
+            background-position: 72% 50%;
+            @media screen and (min-width: 640px) {
+                background-position: 100% 50%;
             }
             .wrap {
                 bottom: 3vh;
-                h1 {
-                    margin-bottom: 1.5em
-                }
                 .btn {
                     font-size: 0.938rem;
                     position: relative;

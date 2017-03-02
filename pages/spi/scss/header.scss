@@ -4,7 +4,7 @@ body>header {
     left: 0;
     top: 0;
     width: 100%;
-    height: 64px;
+    height: $header-height-phone;
     letter-spacing: -5px;
     transition: box-shadow 0.2s ease-in-out;
     background: linear-gradient(90deg, #1f1e1d 0%, #282826 100%);
