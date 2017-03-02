@@ -124,12 +124,6 @@
             display: block;
             margin: 0 auto 1em;
             background: #f7f8f9;
-            @media screen and (min-width: 540px) {
-				display: inline-block;
-            	vertical-align: top;
-				margin-left: 1.612903226%;
-            	padding: .5em;
-            }
             &>a {
 				display: block;
                 text-decoration: none;
