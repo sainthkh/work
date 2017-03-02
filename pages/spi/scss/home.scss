@@ -67,7 +67,7 @@
                 color: #fbc731
             }
             h1 {
-                margin-bottom: .8928571429em;
+                margin-bottom: .75em;
                 width: 80%;
                 font: 800 2.5em "proxima-nova",sans-serif;
                 text-transform: uppercase;
@@ -282,6 +282,9 @@
             }
             .newsletter__form--label {
                 margin-bottom: 1.313em;
+                @media screen and (min-width: 600px) {
+                    text-align: center;
+                }
                 h4 {
                     font-family: "proxima-nova",sans-serif;
                     font-size: 2em;
