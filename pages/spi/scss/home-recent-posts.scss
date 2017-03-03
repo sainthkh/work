@@ -13,18 +13,15 @@
             position: relative;
             top: -2em;
             letter-spacing: -4px;
-            @media screen and (min-width: 768px) {
-                top: -3em
-            }
             &>div {
-                display: inline-block;
                 vertical-align: middle;
                 letter-spacing: normal;
-                width: 35.71428571%;
-                padding-left: 3.571428571%;
-                @media screen and (max-width: 910px) {
-                    display: block;
-                    width: 100%
+                padding: 0 3.6%;
+                width: 100%;
+                @media screen and (min-width: 1024px) {
+                    display: inline-block;
+                    padding-right: 0;
+                    width: 35%;
                 }
                 @media screen and (max-width: 1080px) {
                     font-size: .8em
