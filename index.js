@@ -26,5 +26,5 @@ function compile() {
 
 bs.init({
     server: dir,
-	files: path.join(dir, "/**/*.*"),
+	files: path.join(dir, "/*.*"),
 });
