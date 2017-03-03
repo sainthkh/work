@@ -403,23 +403,14 @@
             }
         }
         .newsletter__form--inputs {
-            @media screen and (max-width: 768px) {
-                -webkit-flex-wrap: wrap;
-                -moz-flex-wrap: wrap;
-                -ms-flex-wrap: wrap;
-                flex-wrap: wrap
-            }
+            flex-wrap: wrap;
             input[type=text] {
-                @media screen and (max-width: 768px) {
-                    margin-bottom: 1rem;
-                    width: calc(50% - 1rem)
-                }
+                margin-bottom: 1rem;
+                width: calc(50% - 1rem)
             }
             input[type=email] {
-                @media screen and (max-width: 768px) {
-                    margin-bottom: 1rem;
-                    width: calc(50% - 1rem)
-                }
+                margin-bottom: 1rem;
+                width: calc(50% - 1rem)
             }
         }
     }

@@ -7941,7 +7941,7 @@ SPI.globals = SPI.globals || {}, SPI.search = SPI.search || {}, SPI.search.refer
         wst = $(window).scrollTop(),
         screenwidth = $(window).width(),
         screenheight = $(window).height(),
-        mbp = 768;
+        mbp = 800;
     return {
         init: init
     }
